@@ -6742,7 +6742,7 @@ public final class Settings {
                 "camera_double_tap_power_gesture_disabled";
 
         /**
-         * Whether the camera double twist gesture to flip between front and back mode should be
+         * Whether the camera double twist gesture to flip between front and ba$
          * enabled.
          *
          * @hide
@@ -6940,6 +6940,7 @@ public final class Settings {
          * Used to store the last used system ui flags to make qs settings stick after reboot
          * @hide
          */
+
         public static final String LAST_SYSTEM_DESIGN_FLAGS = "last_system_design_flags";
 
         /**
@@ -6957,6 +6958,13 @@ public final class Settings {
          * @hide
          */
         public static final String SRGB_ENABLED = "srgb_enabled";
+
+        /**
+         * These are the settings to be backed up.
+         * Whether to display the ADB notification.
+         * @hide
+         */
+        public static final String ADB_NOTIFY = "adb_notify";
 
         /**
          * This are the settings to be backed up.
