@@ -123,6 +123,6 @@
             android:visibility="gone"
             android:singleLine="true"
             />
-    </com.android.keyguard.AlphaOptimizedLinearLayout>
+        </com.android.keyguard.AlphaOptimizedLinearLayout>
 
 </com.android.systemui.statusbar.phone.PhoneStatusBarView>
