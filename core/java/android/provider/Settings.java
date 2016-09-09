@@ -3753,6 +3753,16 @@ public final class Settings {
          * the setting value. See an example above.
          */
 
+	/**
+         * Immersive recents options
+         *
+         * 0 = Default AOSP look
+         * 1 = Statusbar only
+         * 2 = Navbar only
+         * 3 = Fullscreen
+         */
+        public static final String IMMERSIVE_RECENTS = "immersive_recents";
+
         /**
          * Whether user can enable/disable navigation bar.
          * <p>
