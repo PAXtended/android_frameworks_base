@@ -928,8 +928,7 @@ class GlobalScreenshot {
             }
 
             // Clear the notification
-            final NotificationManager nm =
-                    (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            final NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             final Uri uri = Uri.parse(intent.getStringExtra(SCREENSHOT_URI_ID));
             nm.cancel(SystemMessage.NOTE_GLOBAL_SCREENSHOT);
 
