@@ -183,7 +183,7 @@ public class TunerService extends SystemUI {
         }
         if (!mListeningUris.containsKey(uri)) {
             mListeningUris.put(uri, key);
-            mContentResolver.registerContentObserver(uri, false, mObserver, mCurrentUser);
+            mContentResolver.registerContentObserver(uri, true, mObserver, mCurrentUser);
         }
         // Send the first state.
         tunable.onTuningChanged(key, getValue(key));
@@ -201,7 +201,7 @@ public class TunerService extends SystemUI {
         }
         mContentResolver.unregisterContentObserver(mObserver);
         for (Uri uri : mListeningUris.keySet()) {
-            mContentResolver.registerContentObserver(uri, false, mObserver, mCurrentUser);
+            mContentResolver.registerContentObserver(uri, true, mObserver, mCurrentUser);
         }
     }
 
@@ -280,10 +280,7 @@ public class TunerService extends SystemUI {
                 // Tell the tuner (in main SysUI process) to clear all its settings.
                 context.sendBroadcast(new Intent(TunerService.ACTION_CLEAR));
                 // Disable access to tuner.
-                TunerService.setTunerEnabled(context, false);
-                // Make them sit through the warning dialog again.
-                Settings.Secure.putInt(context.getContentResolver(),
-                        TunerFragment.SETTING_SEEN_TUNER_WARNING, 0);
+                TunerService.setTunerEnabled(context, true);
                 if (onDisabled != null) {
                     onDisabled.run();
                 }
