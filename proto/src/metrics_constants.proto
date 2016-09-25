@@ -2269,5 +2269,8 @@ message MetricsEvent {
 
     // PAXTweaks
     PAXTWEAKS = 505;
+
+    // Quick setting tiles
+    QUICK_SETTINGS = 506;
   }
 }
