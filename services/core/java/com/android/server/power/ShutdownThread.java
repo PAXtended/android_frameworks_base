@@ -67,7 +67,9 @@ public final class ShutdownThread extends Thread {
     private static final int PHONE_STATE_POLL_SLEEP_MSEC = 500;
     // maximum time we wait for the shutdown broadcast before going on.
     private static final int MAX_BROADCAST_TIME = 10*1000;
-    private static final int MAX_SHUTDOWN_WAIT_TIME = 20*1000;
+    // maximun time we wait for the mountservice before going on.
+    // Short time may cause unmount fail if 3rd app occupy files, but no impact on app use.
+    private static final int MAX_SHUTDOWN_WAIT_TIME = SystemProperties.getInt("sys.shutdown.waittime",20*1000);
     private static final int MAX_RADIO_WAIT_TIME = 12*1000;
     private static final int MAX_UNCRYPT_WAIT_TIME = 15*60*1000;
     // constants for progress bar. the values are roughly estimated based on timeout.
@@ -350,13 +352,8 @@ public final class ShutdownThread extends Thread {
                 pd.setMessage(context.getText(
                             com.android.internal.R.string.reboot_to_update_reboot));
             }
-        } else if (PowerManager.REBOOT_RECOVERY.equals(mReason)) {
-            // Factory reset path. Set the dialog message accordingly.
-            pd.setTitle(context.getText(com.android.internal.R.string.reboot_to_reset_title));
-            pd.setMessage(context.getText(
-                        com.android.internal.R.string.reboot_to_reset_message));
-            pd.setIndeterminate(true);
-        } else if (PowerManager.REBOOT_RECOVERY_USER.equals(mReason)) {
+        } else if ((PowerManager.REBOOT_RECOVERY_USER.equals(mReason)) ||
+                       (PowerManager.REBOOT_RECOVERY.equals(mReason))) {
             pd.setTitle(context.getText(com.android.internal.R.string.global_action_restart));
             pd.setMessage(context.getText(com.android.internal.R.string.reboot_progress));
             pd.setIndeterminate(true);
